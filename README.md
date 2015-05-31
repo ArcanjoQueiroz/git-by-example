@@ -72,10 +72,15 @@
     # Cancela commit
     $ git reset HEAD~1
 
+    # Emenda último commit
+    $ git commit --amend
+
 **Push** 
 
     # Empurra commits para servidor
     $ git push
+
+    # Empurra commits para origin e branch específicos
     $ git push origin master
 
 **Push forçado**
@@ -172,7 +177,7 @@
     # Reseta arquivo
     $ git checkout MyServlet.java
 
-**Reset**
+**Revertendo commits locais**
 
     # Reseta branch
     $ git reset
@@ -180,17 +185,29 @@
     # Reseta arquivo
     $ git reset HEAD ProductDAO.java
     
-    # Reseta para último commit
-    $ git reset --hard HEAD
-    
     # Reseta para commit específico
     $ git reset --hard 7be6504
     
-    # Resta para commit específico
+    # Reseta para commit específico
     $ git reset --hard 8a01849306c655ab418b7999b18d6ff5f43928b2
     
     # Reseta para estado da branch remota
     $ git reset --hard origin/master
+
+    # Reverte para o último commit (reseta a staging area e o Working Directory)
+    $ git reset --hard HEAD^ 
+
+    # Reverte para o último commit (reseta a staging area e mas não o Working Directory)
+    $ git reset --mixed HEAD^ 
+
+    # Reverte para o último commit (não reseta a staging area e o Working Directory)
+    $ git reset --soft HEAD^ 
+
+**Revertendo commits empurrados**
+
+    # Revertendo commit empurrado (cria commit de revert)
+    $ git revert 9c7532f
+    $ git push origin master
 
 **Remove**
 
@@ -316,6 +333,9 @@
 
     # Exibe log
     $ git log
+
+    # Exibe log em uma linha
+    $ git log --oneline
     
     # Exibe as modificações
     $ git log -p
@@ -334,11 +354,3 @@
     
     # Log do HEAD
     $ git reflog
-
-
-
-
-
-
-
-
