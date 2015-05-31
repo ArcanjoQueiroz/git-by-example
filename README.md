@@ -369,6 +369,9 @@
     # Executa o garbage collector
     $ git gc
 
+    # Executa o garbage collector suprimindo objetos antes da data atual (default é de 2 semanas)
+    $ git gc --prune=now
+
     # Conta os objetos
     $ git count-objects
 
