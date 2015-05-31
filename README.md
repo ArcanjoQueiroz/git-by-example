@@ -66,14 +66,17 @@
     # Atalho para add
     $ git commit -am '#4567 comment: correcao da configuracao do ActiveMQ'
     
-    # Cancela commit
+    # Cancela último commit
     $ git reset HEAD^
     
-    # Cancela commit
+    # Cancela último commit
     $ git reset HEAD~1
 
     # Emenda último commit
     $ git commit --amend
+
+    # Exibe informação de um commit específico
+    $ git show 3e0c4a6
 
 **Push** 
 
@@ -105,6 +108,12 @@
     # Atualiza e faz merge automaticamente
     $ git pull
     $ git mergetool
+
+    # Atualiza repositório e remove referências que não existem no remoto
+    $ git fetch --prune
+    
+    # Atualiza repositório e remove referências que não existem no remoto
+    $ git pull --prune
 
 **Branch**
 
@@ -354,3 +363,14 @@
     
     # Log do HEAD
     $ git reflog
+
+**Garbage Collector**
+
+    # Executa o garbage collector
+    $ git gc
+
+    # Conta os objetos
+    $ git count-objects
+
+    # Busca por objetos inalcançáveis
+    $ git fsck --unreachable
