@@ -98,6 +98,12 @@
     $ vim MyServlet.java
     $ git difftool
 
+    # Exibe arquivos modificados entre o commit atual e determinado commit (2cb4c91)
+    $ git diff --name-only 2cb4c91..HEAD
+
+    # Exibe somente os arquivos deletados
+    git diff --name-only --diff-filter=D 2cb4c91..HEAD
+
 **Atualizando repositório local**
 
     # Atualiza repositório
