@@ -26,8 +26,23 @@
     # Configura line number no git grep
     $ git config --global grep.lineNumber true
     
-    # Exibe configurações
+    # Exibe configurações global
     $ git config --global --list
+
+    # Exibe configuração do sistema
+    $ git config --system --list
+
+    # Exibe configurações local
+    $ git config --local --list
+
+    # Remove configuração
+    $ git config --global --unset my.own.config
+
+    # Configura commit template
+    $ git config --global commit.template $HOME/.gitcommitmsg.txt
+
+    # Configura rebase depois do git pull
+    $ git config --global pull.rebase true
 
 **Criando repositório**
 
@@ -173,6 +188,7 @@
 
     # Exibe arquivos que precisam de resolução de conflitos
     $ git ls-files -u
+    $ git ls-files --unmerged
 
 **Diff**
 
@@ -355,24 +371,27 @@
     # Decorate e graph
     $ git log --decorate --graph --oneline
     
-    # Exibe as modificações
+    # Exibe as modificações do commit
     $ git log -p
     
     # Lista por autor
     $ git log --author foo@bar.com
     
-    # Busca por texto
+    # Busca por texto do commit
     $ git log --grep DAO
     
-    # Busca por texto
+    # Busca por texto do commit exato
     $ git log -g --grep='Build 0051'
     
-    # Somente o nome
+    # Exibe somente o nome do arquivo
     $ git log --name-only
 
     # Exibe o nome e o status do arquivo
     $ git log --name-status
     
+    # Busca por commit de texto isEmpty
+    $ git log -G "isEmpty" --oneline
+
     # Log do HEAD
     $ git reflog
 
