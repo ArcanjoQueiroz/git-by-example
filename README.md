@@ -345,6 +345,9 @@
 
     # Exibe log em uma linha
     $ git log --oneline
+
+    # Decorate e graph
+    $ git log --decorate --graph --oneline
     
     # Exibe as modificações
     $ git log -p
@@ -360,6 +363,9 @@
     
     # Somente o nome
     $ git log --name-only
+
+    # Exibe o nome e o status do arquivo
+    $ git log --name-status
     
     # Log do HEAD
     $ git reflog
