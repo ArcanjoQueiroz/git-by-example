@@ -102,7 +102,7 @@
     $ git diff --name-only 2cb4c91..HEAD
 
     # Exibe somente os arquivos deletados
-    git diff --name-only --diff-filter=D 2cb4c91..HEAD
+    $ git diff --name-only --diff-filter=D 2cb4c91..HEAD
 
 **Atualizando repositório local**
 
