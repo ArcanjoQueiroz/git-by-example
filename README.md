@@ -164,6 +164,12 @@
     # Exibe origem da branch no reflog
     $ git reflog show v1.1.2
 
+    # Cria branch e seta o remote upstream
+    $ git checkout -b remoteBugFix --track origin/stable-3.2
+
+    # Seta remote upstream da branch atual
+    $ git branch --set-upstream-to origin/stable-3.2
+
 **Merge**
 
     # Merge de issue11 em master
