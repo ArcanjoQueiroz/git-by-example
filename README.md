@@ -170,6 +170,12 @@
     # Seta remote upstream da branch atual
     $ git branch --set-upstream-to origin/stable-3.2
 
+    # Exibe as branches locais que possuem determinado commit
+    $ git branch --contains 014b6f8
+
+    # Exibe as branches locais e remotas que possuem determinado commit
+    $ git branch -a --contains 2ddfba3
+
 **Merge**
 
     # Merge de issue11 em master
