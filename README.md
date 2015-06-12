@@ -113,11 +113,29 @@
     $ vim MyServlet.java
     $ git difftool
 
+    # Exibe diferenças (somente o nome do arquivo) entre a branch remota v1.1 e a branch remota master
+    $ git diff --name-only origin/v1.1 origin/master 
+
+    # Exibe diferenças (nome e status) entre a branch remota v1.1 e a branch remota master
+    $ git diff --name-status origin/v1.1 origin/master 
+
+    # Exibe diferenças (nome e estatus) entre a branch remota v1.1 e a branch remota master
+    $ git diff --name-status --diff-filter=DA origin/v1.1 origin/master 
+
+    # Exibe diferenças entre a branch local master e a branch remota master
+    $ git diff master origin/master
+
     # Exibe arquivos modificados entre o commit atual e determinado commit (2cb4c91)
     $ git diff --name-only 2cb4c91..HEAD
 
-    # Exibe somente os arquivos deletados
+    # Exibe somente os arquivos deletados entre o commit atual e determinado commit (2cb4c91)
     $ git diff --name-only --diff-filter=D 2cb4c91..HEAD
+
+    # Abre o difftool configurado para realizar diff entre a branch remota v1.1 e a branch remota master
+    $ git difftool origin/v1.1 origin/master
+
+    # Abre o difftool configurado para realizar diff entre a branch local master e a branch remota master
+    $ git difftool master origin/master
 
 **Atualizando repositório local**
 
