@@ -422,6 +422,9 @@
     # Busca por commit de texto isEmpty
     $ git log -G "isEmpty" --oneline
 
+    # Busca entre datas na branch master e não exibe merges
+    $ git log --author=alexandre --before="2015-06-24 23:59:59" --after="2015-06-24 00:00:00" --no-merges --branches=*/master
+
     # Log do HEAD
     $ git reflog
 
