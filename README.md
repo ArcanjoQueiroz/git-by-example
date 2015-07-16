@@ -175,6 +175,9 @@
     # Cria branch a partir de commit
     $ git branch foo 691679d8b0c1c7b5a1528ffc94be5d15bbd5e420
     $ git checkout foo
+
+    # Cria branch a partir de tag
+    $ git checkout -b newBranch myTag
     
     # Remove branch local
     $ git branch -d issue11
