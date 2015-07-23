@@ -101,6 +101,13 @@
     # Empurra commits para origin e branch específicos
     $ git push origin master
 
+    # Empurra commits em uma nova branch e altera o track da branch atual
+    $ git push origin newBranch
+    $ git branch --set-upstream newBranch origin/newBranch
+
+    # Empurra commits em uma nova branch e altera o track da branch atual
+    $ git push -u origin newBranch
+
 **Push forçado**
 
     # Reseta para commit  específico e faz push forçado (não recomendado)
