@@ -188,6 +188,9 @@
     
     # Remove branch local
     $ git branch -d issue11
+
+    # Remove branch remota
+    $ git push origin :myRemoteBranch
     
     # Exibe origem da branch no reflog
     $ git reflog show v1.1.2
