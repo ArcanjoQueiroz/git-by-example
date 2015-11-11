@@ -44,6 +44,9 @@
     # Configura rebase depois do git pull
     $ git config --global pull.rebase true
 
+    # Define default editor como vim
+    $ git config --global core.editor "vim"
+
 **Criando repositório**
 
     # Cria repositório git
@@ -61,6 +64,9 @@
 
     # Status do repositório local
     $ git status
+
+    # Status exibindo somente os arquivos modificados
+    $ git status -sb
 
 **Adicionando arquivos**
 
@@ -90,8 +96,13 @@
     # Emenda último commit
     $ git commit --amend
 
+**Show Modifications**
+
     # Exibe informação de um commit específico
     $ git show 3e0c4a6
+
+    # Exibe informação de um commit em uma linha exibindo o nome dos arquivos e o status
+    $ git show --oneline --name-status 0a7bb41ad4bf9afe45bef2c48984cea8d8c3ca30
 
 **Push** 
 
@@ -161,6 +172,11 @@
     # Atualiza repositório e remove referências que não existem no remoto
     $ git pull --prune
 
+    # Merge sem fast forward (recomendado)
+    $ git fetch origin
+    $ git merge --no-ff origin/master
+    $ git mergetoo
+
 **Branch**
 
     # Exibe branches
@@ -186,11 +202,17 @@
     # Cria branch a partir de tag
     $ git checkout -b newBranch myTag
     
+    # Renomeia branch local
+    $ git branch -m foo
+
     # Remove branch local
     $ git branch -d issue11
 
     # Remove branch remota
     $ git push origin :myRemoteBranch
+
+    # Remove branch remota
+    $ git push origin --delete myRemoteBranch
     
     # Exibe origem da branch no reflog
     $ git reflog show v1.1.2
