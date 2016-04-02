@@ -47,6 +47,10 @@
     # Define default editor como vim
     $ git config --global core.editor "vim"
 
+    # Configure --prune automaticamente para git fetch e git pull
+    $ git config --global remote.origin.prune true
+
+
 **Criando repositório**
 
     # Cria repositório git
