@@ -108,6 +108,9 @@
     # Exibe informação de um commit em uma linha exibindo o nome dos arquivos e o status
     $ git show --oneline --name-status 0a7bb41ad4bf9afe45bef2c48984cea8d8c3ca30
 
+    # Exibe informação de commit por linha do arquivo
+    $ git blame README.md
+
 **Push** 
 
     # Empurra commits para servidor
