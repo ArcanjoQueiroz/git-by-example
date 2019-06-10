@@ -1,31 +1,45 @@
 **Git by Example**
 ------------------
 
-**Configuração**
+**Configuration**
 
-    # Configura usuário
-    $ git config --global user.name "Alexandre Arcanjo de Queiroz"
+    # Configure your username
+    git config --global user.name "Alexandre Arcanjo de Queiroz"
     
-    # Configura e-mail
-    $ git config --global user.email alexandre.queiroz@live.com
+    # Configure your e-mail
+    git config --global user.email alexandre.queiroz@live.com
     
-    # Configura difftool Meld
-    $ git config --global diff.tool meld
-    $ git config --global difftool.prompt false
+    # Configure meld as difftool
+    git config --global diff.tool meld
+    git config --global difftool.prompt false
     
-    # Configura mergetool Meld
-    $ git config --global merge.tool meld
-    $ git config --global mergetool.keepbackup false
+    # Configure meld as mergetool
+    git config --global merge.tool meld
+    git config --global mergetool.keepbackup false
     
-    # Configura post buffer size
-    $ git config --global http.postBuffer 524288000
+    # Configure post buffer size
+    git config --global http.postBuffer 524288000
     
-    # Configura para ignorar verificação SSL
-    $ git config --global http.sslVerify false
+    # Ignore SSL
+    git config --global http.sslVerify false
     
-    # Configura line number no git grep
-    $ git config --global grep.lineNumber true
-    
+    # Configure git grep line number
+    git config --global grep.lineNumber true
+
+    # Set vim as default commit editor
+    git config --global core.editor "vim"
+
+    # Configure prune auto for git fetch and git pull
+    git config --global remote.origin.prune true
+
+    # Configure git rebase after git pull
+    git config --global pull.rebase true
+
+    # Configure alias
+    git config alias.lg 'log --pretty="%C(yellow)%h %<(10) %C(cyan)%ad %<(25) %C(green)%an %<(30) %C(reset)%s" --date=short --decorate --no-merges --all'    
+
+**Manager configuration**
+
     # Exibe configurações global
     $ git config --global --list
 
@@ -40,16 +54,6 @@
 
     # Configura commit template
     $ git config --global commit.template $HOME/.gitcommitmsg.txt
-
-    # Configura rebase depois do git pull
-    $ git config --global pull.rebase true
-
-    # Define default editor como vim
-    $ git config --global core.editor "vim"
-
-    # Configure --prune automaticamente para git fetch e git pull
-    $ git config --global remote.origin.prune true
-
 
 **Criando repositório**
 
