@@ -231,8 +231,9 @@
     # Cria branch e seta o remote upstream
     $ git checkout -b remoteBugFix --track origin/stable-3.2
 
-    # Seta remote upstream da branch atual
-    $ git branch --set-upstream-to origin/stable-3.2
+    # Configure a new upstream of the current branch
+    $ git branch --set-upstream-to=origin/stable-3.2
+    $ git branch -u origin/stable-3.2
 
     # Exibe as branches locais que possuem determinado commit
     $ git branch --contains 014b6f8
