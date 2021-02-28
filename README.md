@@ -40,191 +40,199 @@
 
 **Manager configuration**
 
-    # Exibe configurações global
+    # List global configuration
     $ git config --global --list
 
-    # Exibe configuração do sistema
+    # Edit global configuration in default commit editor
+    $ git config --global -e
+
+    # List system configuration
     $ git config --system --list
 
-    # Exibe configurações local
+    # List local configuration
     $ git config --local --list
 
-    # Remove configuração
+    # Remove global configuration
     $ git config --global --unset my.own.config
 
-    # Configura commit template
+    # Configure commit template
     $ git config --global commit.template $HOME/.gitcommitmsg.txt
+    
+**Creating git repository**
 
-**Criando repositório**
-
-    # Cria repositório git
+    # Create git repository
     $ git init
 
-**Clonando repositório**
+**Cloning git repository**
 
-    # Clona repositório com todas a branches
+    # Clone git repository
     $ git clone https://github.com/foo/bar.git
     
-    # Clona uma branch específica do repositório
+    # Clone specific branch
     $ git clone -b v1.1.2 https://github.com/foo/bar.git
 
 **Status**
 
-    # Status do repositório local
+    # Show status
     $ git status
 
-    # Status exibindo somente os arquivos modificados
+    # Show only modified files
     $ git status -sb
 
-**Adicionando arquivos**
+**Adding files**
 
-    # Adiciona arquivo na staging area
+    # Add file into staging area
     $ git add MyServlet.java
     
-    # Remove somente da staging area
+    # Remove file from staging area
     $ git rm --cached MyServlet.java
 
-**Commit**
+    # Add all files
+    $ git add -A
 
-    # Efetua commit
+**Committing files**
+
+    # Commit
     $ git commit
     
-    # Informa mensagem
-    $ git commit -m '#1234 comment: correcao de estrutura de dados'
+    # Write a simple commit message
+    $ git commit -m '#1234 comment: Fixing TreeSet implementation'
     
-    # Atalho para add
-    $ git commit -am '#4567 comment: correcao da configuracao do ActiveMQ'
-    
-    # Cancela último commit
-    $ git reset HEAD^
-    
-    # Cancela último commit
+    # Git add + commit
+    $ git commit -am '#4567 comment: Fixing ActiveMQ configuration'
+
+    # Amend last commit
+    $ git commit --amend
+
+**Resetting files**
+
+    # Cancel last commit
     $ git reset HEAD~1
 
-    # Emenda último commit
-    $ git commit --amend
+    # Reset to origin state
+    $ git reset --hard origin/master
+
+    # Reset to a specific commit
+    git reset --hard 8a01849306c655ab418b7999b18d6ff5f43928b2
 
 **Show Modifications**
 
-    # Exibe informação de um commit específico
+    # Show specific commit
     $ git show 3e0c4a6
 
-    # Exibe informação de um commit em uma linha exibindo o nome dos arquivos e o status
+    # Show specific commit in oneline
     $ git show --oneline --name-status 0a7bb41ad4bf9afe45bef2c48984cea8d8c3ca30
 
-    # Exibe informação de commit por linha do arquivo
+    # Show blame
     $ git blame README.md
 
 **Push** 
 
-    # Empurra commits para servidor
+    # Push
     $ git push
 
-    # Empurra commits para origin e branch específicos
+    # Forced push (not recommended)
+    $ git push -f origin v1.1.2
+
+    # Push to origin branch master
     $ git push origin master
 
-    # Empurra commits em uma nova branch e altera o track da branch atual
+    # Push commits to a new branch and set the upstream
+    $ git push -u origin newBranch
+
+    # Push commits to a new branch and set the upstream
     $ git push origin newBranch
     $ git branch --set-upstream newBranch origin/newBranch
 
-    # Empurra commits em uma nova branch e altera o track da branch atual
-    $ git push -u origin newBranch
-
-**Push forçado**
-
-    # Reseta para commit  específico e faz push forçado (não recomendado)
-    $ git reset --hard 8a01849306c655ab418b7999b18d6ff5f43928b2
-    $ git push -f origin v1.1.2
-
 **Diff**
 
-    # Verifica diferenças com o difftool configurado
+    # Open difftool
     $ vim MyServlet.java
     $ git difftool
 
-    # Exibe diferenças (somente o nome do arquivo) entre a branch remota v1.1 e a branch remota master
+    # Show differences (name) between two remote branches
     $ git diff --name-only origin/v1.1 origin/master 
 
-    # Exibe diferenças (nome e status) entre a branch remota v1.1 e a branch remota master
+    # Show differences (name and status) between two remote branches
     $ git diff --name-status origin/v1.1 origin/master 
 
-    # Exibe diferenças (nome e estatus) entre a branch remota v1.1 e a branch remota master
+    # Show only deleted and added files between two remote branches
     $ git diff --name-status --diff-filter=DA origin/v1.1 origin/master 
 
-    # Exibe diferenças entre a branch local master e a branch remota master
+    # Show differences between a local and a remote branch
     $ git diff master origin/master
 
-    # Exibe arquivos modificados entre o commit atual e determinado commit (2cb4c91)
+    # Show files between a specific commit and HEAD
     $ git diff --name-only 2cb4c91..HEAD
 
-    # Exibe somente os arquivos deletados entre o commit atual e determinado commit (2cb4c91)
+    # Show deleted files between a specific commit and HEAD
     $ git diff --name-only --diff-filter=D 2cb4c91..HEAD
 
-    # Abre o difftool configurado para realizar diff entre a branch remota v1.1 e a branch remota master
+    # Show difftool between two remote branches
     $ git difftool origin/v1.1 origin/master
 
-    # Abre o difftool configurado para realizar diff entre a branch local master e a branch remota master
+    # Show difftool between a local and a remote branch
     $ git difftool master origin/master
 
-**Atualizando repositório local**
+**Updating local repository**
 
-    # Atualiza repositório
+    # Update local repository and run mergetool
     $ git fetch
     $ git merge origin/master
     $ git mergetool
 
-    # Atualiza e faz merge automaticamente
+    # Update local repository and run mergetool
     $ git pull
     $ git mergetool
 
-    # Atualiza repositório e remove referências que não existem no remoto
+    # Prune deleted branches in remote repository
     $ git fetch --prune
     
-    # Atualiza repositório e remove referências que não existem no remoto
-    $ git pull --prune
-
-    # Merge sem fast forward (recomendado)
+    # Merge with no fast forward
     $ git fetch origin
     $ git merge --no-ff origin/master
     $ git mergetoo
 
-**Branch**
+**Branch information**
 
-    # Exibe branches
+    # Show branches
     $ git branch
     
-    # Exibe branches remotas
+    # Show only remote branches
     $ git branch -r
     
-    # Exibe todas as branches
+    # Show all branches
     $ git branch -a
     
-    # Cria branch e faz o checkout
+    # Create and checkout a branch 
     $ git branch issue11
     $ git checkout issue11
     
-    # Cria branch e faz o checkout
+    # Create and checkout a branch 
     $ git checkout -b issue11
     
-    # Cria branch a partir de commit
+    # Create a branch from commit
     $ git branch foo 691679d8b0c1c7b5a1528ffc94be5d15bbd5e420
     $ git checkout foo
 
-    # Cria branch a partir de tag
+    # Create a branch from tag
     $ git checkout -b newBranch myTag
     
-    # Renomeia branch local
+    # Rename local branch
     $ git branch -m foo
 
-    # Remove branch local
+    # Remove local branch
     $ git branch -d issue11
 
-    # Remove branch remota
+    # Remove remote branch
     $ git push origin :myRemoteBranch
 
-    # Remove branch remota
+    # Remove remote branch
     $ git push origin --delete myRemoteBranch
     
+    # Remove remote branch
+    $ git push origin -D myRemoteBranch
+
     # Exibe origem da branch no reflog
     $ git reflog show v1.1.2
 
