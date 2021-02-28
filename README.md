@@ -7,7 +7,7 @@
     git config --global user.name "Alexandre Arcanjo de Queiroz"
     
     # Configure your e-mail
-    git config --global user.email alexandre.queiroz@live.com
+    git config --global user.email alexandre@queiroz.com
     
     # Configure meld as difftool
     git config --global diff.tool meld
@@ -38,7 +38,7 @@
     # Configure alias
     git config alias.lg 'log --pretty="%C(yellow)%h %<(10) %C(cyan)%ad %<(25) %C(green)%an %<(30) %C(reset)%s" --date=short --decorate --no-merges --all'    
 
-**Manager configuration**
+**Configuration**
 
     # List global configuration
     $ git config --global --list
@@ -177,12 +177,12 @@
 **Updating local repository**
 
     # Update local repository and run mergetool
-    $ git fetch
-    $ git merge origin/master
+    $ git pull
     $ git mergetool
 
     # Update local repository and run mergetool
-    $ git pull
+    $ git fetch
+    $ git merge origin/master
     $ git mergetool
 
     # Prune deleted branches in remote repository
@@ -243,105 +243,61 @@
     $ git branch --set-upstream-to=origin/stable-3.2
     $ git branch -u origin/stable-3.2
 
-    # Exibe as branches locais que possuem determinado commit
+    # Show local branches which contains a specific commit
     $ git branch --contains 014b6f8
 
-    # Exibe as branches locais e remotas que possuem determinado commit
+    # Show all local branches which contains a specific commit
     $ git branch -a --contains 2ddfba3
 
 **Merge**
 
-    # Merge de issue11 em master
+    # Merge issue11 into master
     $ git checkout master
     $ git merge issue11
     $ git mergetool
     
-    # Merge de issue11 em master
+    # Merge issue11 into master
     $ git checkout master
-    $ git merge issue11
-    $ git mergetool -t meld
-    
-    # Merge com mensagem
-    $ git checkout master
-    $ git merge -m '#12345 comment: merge da correcao emergencial' issue11
+    $ git merge -m '#12345 comment: Fix' issue11
     $ git mergetool
     
-    # Cancelando merge
+    # Abort merge
     $ git checkout master
     $ git merge issue11
     $ git merge --abort
 
-    # Exibe arquivos que precisam de resolução de conflitos
+    # Show unmerged files
     $ git ls-files -u
     $ git ls-files --unmerged
 
-**Diff**
+    # Find the most recent common ancestor of two branches
+    $ git merge-base develop master
 
-    # Verifica diferenças na branch atual
-    $ vim MyServlet.java
-    $ git difftool
-    
-    # Verifica diferençãs entre branches
-    $ git checkout master
-    $ git diff v1.1.2
+**Discarding modifications**
 
-**Revertendo arquivos**
-
-    # Reseta arquivo
+    # Discard modification
     $ git checkout -- MyServlet.java
     
-    # Reseta arquivo
+    # Discard modification
     $ git checkout MyServlet.java
 
-**Revertendo commits locais**
+**Removing files**
 
-    # Reseta branch
-    $ git reset
-    
-    # Reseta arquivo
-    $ git reset HEAD ProductDAO.java
-    
-    # Reseta para commit específico
-    $ git reset --hard 7be6504
-    
-    # Reseta para commit específico
-    $ git reset --hard 8a01849306c655ab418b7999b18d6ff5f43928b2
-    
-    # Reseta para estado da branch remota
-    $ git reset --hard origin/master
-
-    # Reverte para o último commit (reseta a staging area e o Working Directory)
-    $ git reset --hard HEAD^ 
-
-    # Reverte para o último commit (reseta a staging area e mas não o Working Directory)
-    $ git reset --mixed HEAD^ 
-
-    # Reverte para o último commit (não reseta a staging area e o Working Directory)
-    $ git reset --soft HEAD^ 
-
-**Revertendo commits empurrados**
-
-    # Revertendo commit empurrado (cria commit de revert)
-    $ git revert 9c7532f
-    $ git push origin master
-
-**Remove**
-
-    # Remove arquivo
+    # Removing file
     $ git rm CustomerDAO.java
     
-    # Remove arquivo forçado
+    # Removing file (forced)
     $ git rm -f CustomerDAO.java
 
-**Movendo ou renomeando**
+**Moving and renaming files**
 
-    # Renomeando
+    # Renaming file
     $ git mv CustomerDAO.java CustomerDAOImpl.java
     
-    # Movendo
+    # Moving file
     $ git mv CustomerDAO.java dao/CustomerDAO.java
 
-**Ignorando arquivos**
+**Ignoring files**
 
     $ vim .gitignore
     
@@ -353,61 +309,68 @@
     **/*/.gitignore
     **/*.class
 
-**Stash (Work In Progress)**
+**Stashing (Work In Progress)**
 
-    # Cria stash
+    # Save stash
     $ git stash
+
+    # Save stash
+    $ git stash save myStash
     
-    # Aplica stash e remove da pilha
+    # Pop last stash
     $ git stash pop
     
-    # Lista WIP
+    # Lista stash list
     $ git stash list
     
-    # Status do primeiro stash
+    # Show stash info
+    $ git stash show -p 0
+    $ git stash show -p 1
+    $ git stash show 0
+    $ git stash show 1
     $ git stash show stash@{0}
     
-    # Branch com WIP
+    # Create branch from stash
     $ git stash branch issue12 stash@{0}
     
-    # Apaga WIP
+    # Drop stash
     $ git stash drop stash@{0}
     
-    # Aplica stash mas não remove da pilha
-    $ git stash apply
+    # Apply stash
+    $ git stash apply stash@{0}
 
-**Pesquisas em arquivos**
+**Searching**
 
-    # Sintaxe básica
+    # Grep files by text
     $ git grep "int i=10"
-    
-    # Line Number
+
+    # Show line number
     $ git grep -n "int i=10"
     
-    # Somente na staging area
+    # Grep files only in staging area
     $ git grep --cached "int i=10"
     
     # Ignore case
     $ git grep -i "CREATE INDEX"
     
-    # Exibe somente o nome do arquivo
+    # Show only file name
     $ git grep --name-only "CustomerService"
     
-    # Em branch especifica com extensão específica
+    # Grep only js files in a specific branch
     $ git grep "setTimeout" branch7 -- *.js
     
-    # Em todas as branches
+    # Grep in all branches
     $ git rev-list --all | xargs git grep "CustomerServiceImpl"
     
-    # Em todas as branches
+    # Grep in all branches
     $ git grep "CustomerServiceImpl" $(git rev-list --all)
 
-**Repositórios remotos**
+**Remote repository**
 
-    # Exibe informações do repositório remoto
+    # Show remote repositories
     $ git remote show
     
-    # Exibe informações do repositório remoto origin (default)
+    # Show remote repository info
     $ git remote show origin
     
     # Verbose
@@ -416,83 +379,80 @@
     # Verbose
     $ git remote show -v origin
     
-    # Adiciona novo repositório remoto
-    $ git remote add novo git@bitbucket.org:foo/xpto.git
+    # Add new remote repository
+    $ git remote add bitbucket git@bitbucket.org:foo/xpto.git
     
-    # Altera a URL do repositório remoto
-    $ git remote set-url novo  git@bitbucket.org:bar/foo.git
+    # Set new remote repository URL
+    $ git remote set-url bitbucket  git@bitbucket.org:bar/foo.git
     
-    # Remove referência do repositório remoto
-    $ git remote rm old
+    # Remove remote repository
+    $ git remote rm bitbucket
     
-    # Renomeia referência do repositório remoto
-    $ git remote rename novo new
+    # Rename remote repository reference
+    $ git remote rename bitbucket legacy
 
 **Tags**
 
-    # Exibe as tags existentes
+    # Show tags
     $ git tag
     
-    # Cria tag leve
+    # Create simple tag
     $ git tag v1.0.0
     
-    # Cria tag anotada
+    # Create annotated tag
     $ git tag -a v1.1.1 -m 'Criando tag'
     
-    # Empurra tags
+    # Push tags
     $ git push origin master --tags
     
-    # Remove tag no repositório local
+    # Remove local tag
     $ git tag -d v1.0.0
 
 **Log**
 
-    # Exibe log
+    # Show log
     $ git log
 
-    # Exibe log em uma linha
+    # Show log in one line
     $ git log --oneline
 
-    # Decorate e graph
+    # Decorate and graph
     $ git log --decorate --graph --oneline
     
-    # Exibe as modificações do commit
+    # Show log with patch
     $ git log -p
     
-    # Lista por autor
+    # List by author
     $ git log --author foo@bar.com
     
-    # Busca por texto do commit
+    # List by commit message
     $ git log --grep DAO
     
-    # Busca por texto do commit exato
-    $ git log -g --grep='Build 0051'
-    
-    # Exibe somente o nome do arquivo
+    # Show name only
     $ git log --name-only
 
-    # Exibe o nome e o status do arquivo
+    # Show name and status
     $ git log --name-status
     
-    # Busca por commit de texto isEmpty
+    # Show by modification
     $ git log -G "isEmpty" --oneline
 
-    # Busca entre datas na branch master e não exibe merges
+    # Show between dates
     $ git log --author=alexandre --before="2015-06-24 23:59:59" --after="2015-06-24 00:00:00" --no-merges --branches=*/master
 
-    # Log do HEAD
+    # Show reflog
     $ git reflog
 
 **Garbage Collector**
 
-    # Executa o garbage collector
+    # Run Garbage Collector
     $ git gc
 
-    # Executa o garbage collector suprimindo objetos antes da data atual (default é de 2 semanas)
+    # Run Garbage Collector and prune now
     $ git gc --prune=now
 
-    # Conta os objetos
+    # Count objects
     $ git count-objects
 
-    # Busca por objetos inalcançáveis
+    # Find for unreachable objects
     $ git fsck --unreachable
