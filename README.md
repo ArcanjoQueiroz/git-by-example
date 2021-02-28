@@ -38,7 +38,7 @@
     # Configure alias
     git config alias.lg 'log --pretty="%C(yellow)%h %<(10) %C(cyan)%ad %<(25) %C(green)%an %<(30) %C(reset)%s" --date=short --decorate --no-merges --all'    
 
-**Configuration**
+**Manage configuration**
 
     # List global configuration
     $ git config --global --list
@@ -115,7 +115,7 @@
     # Reset to a specific commit
     git reset --hard 8a01849306c655ab418b7999b18d6ff5f43928b2
 
-**Show Modifications**
+**Show modifications**
 
     # Show specific commit
     $ git show 3e0c4a6
@@ -383,7 +383,7 @@
     $ git remote add bitbucket git@bitbucket.org:foo/xpto.git
     
     # Set new remote repository URL
-    $ git remote set-url bitbucket  git@bitbucket.org:bar/foo.git
+    $ git remote set-url bitbucket git@bitbucket.org:bar/foo.git
     
     # Remove remote repository
     $ git remote rm bitbucket
